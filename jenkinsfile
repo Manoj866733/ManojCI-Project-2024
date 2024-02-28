@@ -24,10 +24,11 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Manoj866733/ManojCI-Project-2024.git'
             }
         }
-        stage("Sonarqube Analysis") {
+       stage("Sonarqube Analysis") {
             steps {
                 withSonarQubeEnv('SonarQube-Server') {
-                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=${APP_NAME} -Dsonar.projectKey=${APP_NAME}"
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=My-website \
+                    -Dsonar.projectKey=My-website'''
                 }
             }
         }
