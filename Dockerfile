@@ -1,20 +1,9 @@
-# Use a lightweight base image
-FROM node:14-alpine
+FROM node:19-alpine3.15
 
-# Set the working directory
 WORKDIR /reddit-clone
 
-# Copy only the necessary files for dependency installation
-COPY package.json package-lock.json ./
+COPY . /reddit-clone
+RUN npm install 
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application files
-COPY . .
-
-# Expose the necessary port
 EXPOSE 3000
-
-# Command to run your application
-CMD ["npm", "run", "dev"]
+CMD ["npm","run","dev"]
